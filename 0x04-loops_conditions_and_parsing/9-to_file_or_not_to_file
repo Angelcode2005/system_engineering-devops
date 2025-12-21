@@ -1,23 +1,18 @@
 #!/usr/bin/env bash
-# This script checks the file named 'school' and prints messages exactly as expected
+# This script checks the 'school' file and prints messages about existence, emptiness, and type
 
 filename="school"
 
-if [ -e "$filename" ]; then
-    # File exists
-    if [ -d "$filename" ]; then
-        echo "$filename exists but it’s a directory"
-    else
-        echo "$filename file exists"
-        if [ -s "$filename" ]; then
-            echo "$filename file is not empty"
-        else
-            echo "$filename file is empty"
-        fi
-        if [ -f "$filename" ]; then
-            echo "$filename is a regular file"
-        fi
-    fi
-else
+if [ ! -e "$filename" ]; then
     echo "$filename file does not exist"
+else
+    echo "$filename file exists"
+    if [ -s "$filename" ]; then
+        echo "$filename file is not empty"
+    else
+        echo "$filename file is empty"
+    fi
+    if [ -f "$filename" ]; then
+        echo "$filename is a regular file"
+    fi
 fi
