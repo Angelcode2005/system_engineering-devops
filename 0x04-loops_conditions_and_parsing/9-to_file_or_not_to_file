@@ -1,46 +1,20 @@
 #!/usr/bin/env bash
-# This script checks the properties of a file named 'school' using if and else statements
+# This script checks the file named 'school' and prints specific messages
 
 filename="school"
 
-# Check existence
 if [ -e "$filename" ]; then
-    echo "$filename exists"
+    # File exists
+    if [ -f "$filename" ]; then
+        echo "$filename is a regular file"
+        if [ -s "$filename" ]; then
+            echo "$filename file is not empty"
+        fi
+        echo "$filename file exists"
+    elif [ -d "$filename" ]; then
+        echo "$filename exists but it’s a directory"
+    fi
 else
-    echo "$filename does not exist"
+    echo "$filename doesn’t exist"
 fi
 
-# Check if it's a regular file
-if [ -f "$filename" ]; then
-    echo "$filename is a regular file"
-else
-    echo "$filename is not a regular file"
-fi
-
-# Check if it's a directory
-if [ -d "$filename" ]; then
-    echo "$filename is a directory"
-else
-    echo "$filename is not a directory"
-fi
-
-# Check readability
-if [ -r "$filename" ]; then
-    echo "$filename is readable"
-else
-    echo "$filename is not readable"
-fi
-
-# Check writability
-if [ -w "$filename" ]; then
-    echo "$filename is writable"
-else
-    echo "$filename is not writable"
-fi
-
-# Check executability
-if [ -x "$filename" ]; then
-    echo "$filename is executable"
-else
-    echo "$filename is not executable"
-fi
